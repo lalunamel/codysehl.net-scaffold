@@ -6,7 +6,6 @@ var rimraf = require('rimraf');
 
 var config = {
 	paths: {
-		bowerConfig: '.bower.json',
 		build: 'build',
 		iconicSrc: './bower_components/open-iconic/svg/*.svg',
 		iconicDest: './build/img/iconic/',
@@ -20,8 +19,6 @@ var config = {
 gulp.task('bower', function(done) {
 	gulp.src(config.paths.iconicSrc)
 		.pipe(gulp.dest(config.paths.iconicDest));
-	gulp.src(config.paths.bowerConfig)
-		.pipe(gulp.dest(config.paths.build));
 	done();
 });
 
