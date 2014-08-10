@@ -1,15 +1,16 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var run = require('gulp-run');
+var shell = require('gulp-shell');
 var rimraf = require('rimraf');
 
 
 var config = {
 	paths: {
+		bowerConfig: '.bower.json',
 		build: 'build',
 		iconicSrc: './bower_components/open-iconic/svg/*.svg',
 		iconicDest: './build/img/iconic/',
-		sassSrc: './src/sass/codysehlSass.scss',
+		sassSrc: './src/sass/*.scss',
 		sassDest: './build/sass/',
 		jadeSrc: './src/jade/*.jade',
 		jadeDest: './build/jade/'
@@ -19,14 +20,13 @@ var config = {
 gulp.task('bower', function(done) {
 	gulp.src(config.paths.iconicSrc)
 		.pipe(gulp.dest(config.paths.iconicDest));
+	gulp.src(config.paths.bowerConfig)
+		.pipe(gulp.dest(config.paths.build));
 	done();
 });
 
 gulp.task('sass', function() {
 	gulp.src(config.paths.sassSrc)
-		.pipe(sass({
-			errLogToConsole: true
-		}))
 		.pipe(gulp.dest(config.paths.sassDest));
 });
 
@@ -53,8 +53,10 @@ gulp.task('build', ['clean', 'bower', 'sass', 'jade'], function(done) {
 });
 
 gulp.task('deploy', ['build'], function() {
-	run('git subtree push --prefix ' + config.paths.build + ' origin ' + config.paths.build).exec()
-		.pipe(gulp.dest('output'));
+	gulp.src('')
+		.pipe(shell([
+			'git subtree push --prefix ' + config.paths.build + ' origin ' + config.paths.build
+		]));
 });
 
 gulp.task('default', ['build']);
