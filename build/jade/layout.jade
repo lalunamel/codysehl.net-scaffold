@@ -5,9 +5,10 @@ html
 		meta(charset='utf-8')
 		meta(name='viewport' content='width=device-width, initial-scale=1')
 		link(rel='stylesheet', href='/layout.css')
-		<!-- Typekit -->
-		<script type='text/javascript' src='//use.typekit.net/fjx5dfz.js'></script>
-		<script type='text/javascript'>try{Typekit.load();}catch(e){}</script>
+		//- Typekit
+		script(type='text/javascript', src='//use.typekit.net/fjx5dfz.js')
+		script(type='text/javascript')
+			try{Typekit.load();}catch(e){}
 		block header-includes
 
 	body
