@@ -5,8 +5,10 @@ var config = {
 	paths: {
 		iconicSrc: './bower_components/open-iconic/svg/*.svg',
 		iconicDest: './build/img/iconic/',
-		sassSrc: './src/codysehlSass.scss',
-		sassDest: './build/'
+		sassSrc: './src/sass/codysehlSass.scss',
+		sassDest: './build/sass/',
+		jadeSrc: './src/jade/*.jade',
+		jadeDest: './build/jade/'
 	}
 };
 
@@ -16,7 +18,6 @@ gulp.task('bower', function() {
 });
 
 gulp.task('sass', function() {
-	console.log(config.paths.sassSrc)
 	gulp.src(config.paths.sassSrc)
 		.pipe(sass({
 			errLogToConsole: true
@@ -24,10 +25,16 @@ gulp.task('sass', function() {
 		.pipe(gulp.dest(config.paths.sassDest));
 });
 
+gulp.task('jade', function() {
+	gulp.src(config.paths.jadeSrc)
+		.pipe(gulp.dest(config.paths.jadeDest));
+});
+
 gulp.task('watch', function() {
 	gulp.watch(config.paths.sassSrc, ['sass']);
+	gulp.watch(config.paths.jadeSrc, ['jade']);
 });
 
 gulp.task('default', function() {
-	gulp.start('bower', 'sass');
+	gulp.start('bower', 'sass', 'jade');
 });
