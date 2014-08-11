@@ -7,8 +7,8 @@ var rimraf = require('rimraf');
 var config = {
 	paths: {
 		build: 'build',
-		iconicSrc: './bower_components/open-iconic/svg/*.svg',
-		iconicDest: './build/img/iconic/',
+		iconicSrc: './bower_components/octicons/**',
+		iconicDest: './build/img/octicons/',
 		sassSrc: './src/sass/*.scss',
 		sassDest: './build/sass/',
 		jadeSrc: './src/jade/*.jade',
