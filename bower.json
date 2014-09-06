@@ -11,7 +11,7 @@
     "scaffold",
     "stylus"
   ],
-  "dependencies": {
+  "dev-dependencies": {
     "semantic.gs": "git@github.com:tylertate/semantic.gs.git"
   },
   "license": "MIT",
